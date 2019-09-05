@@ -1,0 +1,17 @@
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.csprojAssemblyReference.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.csproj.CoreCompileInputs.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.AssemblyInfoInputs.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.AssemblyInfo.cs
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\XUnitTesT.deps.json
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\XUnitTesT.runtimeconfig.json
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\XUnitTesT.runtimeconfig.dev.json
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\XUnitTesT.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\XUnitTesT.pdb
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\DemoWebAPI.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\bin\Debug\netcoreapp2.2\DemoWebAPI.pdb
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.csproj.CopyComplete
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\XUnitTesT\obj\Debug\netcoreapp2.2\XUnitTesT.pdb

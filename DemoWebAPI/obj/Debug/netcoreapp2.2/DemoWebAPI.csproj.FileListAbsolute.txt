@@ -1,0 +1,14 @@
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\bin\Debug\netcoreapp2.2\DemoWebAPI.deps.json
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\bin\Debug\netcoreapp2.2\DemoWebAPI.runtimeconfig.json
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\bin\Debug\netcoreapp2.2\DemoWebAPI.runtimeconfig.dev.json
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\bin\Debug\netcoreapp2.2\DemoWebAPI.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\bin\Debug\netcoreapp2.2\DemoWebAPI.pdb
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.csprojAssemblyReference.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.RazorAssemblyInfo.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.RazorAssemblyInfo.cs
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.AssemblyInfoInputs.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.AssemblyInfo.cs
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.RazorTargetAssemblyInfo.cache
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.dll
+C:\Users\rupawar\source\repos\DemoWebAPI\DemoWebAPI\obj\Debug\netcoreapp2.2\DemoWebAPI.pdb
