@@ -4,12 +4,19 @@ using System.Linq;
 using DemoWebAPI.MyData;
 using System.Threading.Tasks;
 using DemoWebAPI.Model;
+using System.Text.RegularExpressions;
 
 namespace DemoWebAPI.Services
 {
     public class BookServices : IServices
     {
-        BookData bookData = new BookData();
+        private BookData bookData = new BookData();
+        private bool checkBookDetails(string input)
+        {
+            string pattern = "^[a-zA-Z ]+$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(input);
+        }
 
         public List<Book> GetBook()
         {
@@ -22,46 +29,36 @@ namespace DemoWebAPI.Services
         }
         public int AddBook(Book newBook)
         {
-            List<Book> books = bookData.GetBook();
+            List<Book> bookList = bookData.GetBook();
             if (newBook.Id < 0)
                 return -1;
-            if (books.Where(book => book.Id == newBook.Id).FirstOrDefault() != null)
+            if (bookList.Where(book => book.Id == newBook.Id).FirstOrDefault() != null)
                 return 0;
             bookData.AddBook(newBook);
             return 1;
         }
         public int UpdateBook(int id,Book newBook)
-        {
-            int i;
+        {           
             if (id < 0 || newBook.Id < 0)
                 return -1;
             List<Book> bookList = bookData.GetBook();
-            for (i = 0; i < bookList.Count; i++)
-            {
-                if (bookList[i].Id == id)
-                {
-                    bookData.UpdateById(i, newBook);
-                    return 1;
-                }
-            }
-            return 0;      
+            var index = bookList.IndexOf(bookList.Find((book) => book.Id == id));
+            if (index == -1)
+                return 0;      
+            bookData.UpdateById(id, newBook);
+            return 1;    
         }
 
         public int DeleteBookByID(int id)
         {
-            int i;
             if (id < 0)
                 return -1;
-            List<Book> books = bookData.GetBook();
-            for (i = 0; i < books.Count; i++)
-            {
-                if (books[i].Id == id)
-                {
-                    bookData.DeleteById(books[i]);
-                    return 1;
-                }
-            }
-            return 0;
+            List<Book> bookList = bookData.GetBook();
+            var index = bookList.IndexOf(bookList.Find((book) => book.Id == id));
+            if (index == -1)
+                return 0;
+            bookData.DeleteById(bookList[id]);
+            return 1;  
         }
         
     }
