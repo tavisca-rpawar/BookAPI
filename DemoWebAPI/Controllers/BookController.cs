@@ -28,30 +28,50 @@ namespace DemoWebAPI.Controllers
         }
         // GET: api/Home/5
         [HttpGet("{id}", Name = "Get")]
-        public Book Get(int id)
+        public ActionResult<IEnumerable<Book>> Get(int id)
         {
-            return bookService.GetBookById(id);
+            Book book = bookService.GetBookById(id);
+            if (book == null)
+                return NoContent();
+            return Ok(book);
         }
 
         // POST: api/Home
         [HttpPost]
-        public void Post([FromBody] Book value)
+        public ActionResult<string> Post([FromBody] Book book)
         {
-            bookService.AddBook(value);
+            var status = bookService.AddBook(book);
+            if (status == -1)
+                return BadRequest("Negative Id cannot be accepted");
+            if (status == 0)
+                return BadRequest("Id Already exists");
+
+            return "Sucessfully Added in BookData having ID:" + book.Id;
+            
         }
 
         // PUT: api/Home/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Book newBook)
+        public ActionResult<string> Put(int id, [FromBody] Book newBook)
         {
-            bookService.UpdateBook(id, newBook);
+            var status = bookService.UpdateBook(id, newBook);
+            if(status == -1)
+                return BadRequest("Negative Id cannot be accepted");
+            if (status == 0)
+                return BadRequest("Id Doesnot exist");
+            return "Sucessfully Udated having ID:" + newBook.Id;
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<string> Delete(int id)
         {
-            bookService.DeleteBookByID(id);
+            var status = bookService.DeleteBookByID(id);
+            if (status == -1)
+                return BadRequest("Negative Id is not available");
+            if (status == 0)
+                return BadRequest("Id Doesnot exist");
+            return "Sucessfully Deleted having ID:" + id;
         }
     }
 }

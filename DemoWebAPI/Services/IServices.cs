@@ -10,8 +10,8 @@ namespace DemoWebAPI.Services
     {
         List<Book> GetBook();
         Book GetBookById(int id);
-        void AddBook(Book newBook);
-        void UpdateBook(int id, Book newBook);
-        void DeleteBookByID(int id);
+        int AddBook(Book newBook);
+        int UpdateBook(int id, Book newBook);
+        int DeleteBookByID(int id);
     }
 }

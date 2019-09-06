@@ -10,6 +10,7 @@ namespace DemoWebAPI.Services
     public class BookServices : IServices
     {
         BookData bookData = new BookData();
+
         public List<Book> GetBook()
         {
             return bookData.GetBook();
@@ -19,30 +20,48 @@ namespace DemoWebAPI.Services
             List<Book> books = bookData.GetBook();
             return books.Where(book => book.Id == id).FirstOrDefault();
         }
-        public void AddBook(Book newBook)
+        public int AddBook(Book newBook)
         {
+            List<Book> books = bookData.GetBook();
+            if (newBook.Id < 0)
+                return -1;
+            if (books.Where(book => book.Id == newBook.Id).FirstOrDefault() != null)
+                return 0;
             bookData.AddBook(newBook);
+            return 1;
         }
-        public void UpdateBook(int id,Book newBook)
+        public int UpdateBook(int id,Book newBook)
         {
             int i;
-            List<Book> books = bookData.GetBook();
-            for(i = 0; i<books.Count; i++)
+            if (id < 0 || newBook.Id < 0)
+                return -1;
+            List<Book> bookList = bookData.GetBook();
+            for (i = 0; i < bookList.Count; i++)
             {
-                if(books[i].Id == id)
+                if (bookList[i].Id == id)
+                {
                     bookData.UpdateById(i, newBook);
-            }         
+                    return 1;
+                }
+            }
+            return 0;      
         }
 
-        public void DeleteBookByID(int id)
+        public int DeleteBookByID(int id)
         {
             int i;
+            if (id < 0)
+                return -1;
             List<Book> books = bookData.GetBook();
             for (i = 0; i < books.Count; i++)
             {
                 if (books[i].Id == id)
+                {
                     bookData.DeleteById(books[i]);
+                    return 1;
+                }
             }
+            return 0;
         }
         
     }
