@@ -1,0 +1,25 @@
+{
+  "BookList": [
+    {
+      "Id": 100,
+      "Title": "Randomness",
+      "Author": "Katoch",
+      "Category": "Action",
+      "Price": 0.0
+    },
+    {
+      "Id": 201,
+      "Title": "the cllimex",
+      "Author": "Alex",
+      "Category": "Fiction",
+      "Price": 500.0
+    },
+    {
+      "Id": 203,
+      "Title": "the cllimex",
+      "Author": "Alex",
+      "Category": "Fiction",
+      "Price": 500.0
+    }
+  ]
+}

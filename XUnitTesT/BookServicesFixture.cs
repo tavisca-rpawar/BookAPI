@@ -12,140 +12,87 @@ namespace XUnitTest
     {
         BookServices bookService = new BookServices();
         [Fact]
-        public void GetBook_should_return_list_of_books_test()
+        public void GetBookById_should_return_book_with_specific_id_test()
         {
-            var actual = bookService.GetBook();
-            var expected = new List<Book> {new Book(101,"the monk who sold his ferrari","Robin Sharma","Non Fiction",200),
-                                            new Book(201,"the cllimex","Alex","Fiction",500)};
+            var id = 201;
+            var actual = bookService.GetBookById(id);
+            var expected = bookService.GetBook().Find((book) => book.Id == id);
             actual.Should().BeEquivalentTo(expected);
-            
+        }
+        [Fact]
+        public void GetBookById_with_negative_id_test()
+        {
+            var id = -300;
+            var response = bookService.GetBookById(id); ;
+            var actual = response.getErrorList();
+            var expected = new List<string>() { "Id should not be negative" };
+            actual.Should().BeEquivalentTo(expected);
+        }
+        [Fact]
+        public void GetBookById_with_invalid_id_test()
+        {
+            var id = 400;
+            var response = bookService.GetBookById(id); ;
+            var actual = response.getErrorList();
+            var expected = new List<string>() { "Invalid Id" };
+            actual.Should().BeEquivalentTo(expected);
         }
         [Fact]
         public void AddBook_should_add_book_in_bookData_test()
         {
+            var actual = new Book(203, "the cllimex", "Alex", "Fiction", 500);
+            bookService.AddBook(actual);
+            var expected = bookService.GetBook();
+            expected.Should().ContainEquivalentOf(actual);
         }
-        //    [Fact]
-        //    public void AddBook_should_add_book_in_bookData_test()
-        //    {
-        //        var expected = 1;
-        //        Add_books_in_list();
-        //        var newBook = new Book(3, "Random", "Katoch", "Action",0);
-        //        var actual =  bookServices.AddBook(newBook);
-        //        Assert.Equal(expected, actual);
-        //    }
-        //[Fact]
-        //public void AddBook_should_add_book_in_bookData_test()
-        //{
-        //    Add_books_in_list();
-        //    var actual = new Book(3, "Random", "Katoch", "Action", 0);
-        //    var expected = bookList;
-        //    Assert.Contains(expected, actual);
+        
+        [Fact]
+        public void AddBook_with_invalid_inputs_should_return_list_of_errors_test()
+        {
+            var newBook = new Book(-1, "", "", "", -111);
+            var response = bookService.AddBook(newBook);
+            var actual = response.getErrorList();
+            var expected = new List<string>() { "Id should not be negative",
+                                                         "Title is Invalid ",
+                                                        "Author name is Invalid ",
+                                                        "Category is Invalid ",
+                                                        "Price should not be negative "};
+            actual.Should().BeEquivalentTo(expected);
+        }
+        [Fact]
+        public void UpdatedBook_should_update_book_in_bookData_test()
+        {
+            int id = 101;
+            int newId = 100;
+            var updatedBook = new Book(newId, "Randomness", "Katoch", "Action", 0);
+            bookService.UpdateBook(id, updatedBook);
+            var expected = bookService.GetBookById(newId);
+            var actual = updatedBook;
+            actual.Should().BeEquivalentTo(expected);
+        }
+        [Fact]
+        public void UpdatedBook_with_invalid_id_test()
+        {
+            int id = 101;
+            int newId = 20;
+            var updatedBook = new Book(newId, "Randomness", "Katoch", "Action", 0.99);
+            var response = bookService.UpdateBook(id, updatedBook);
+            var expected = response.getErrorList();
+            var actual = new List<string>() { "Invalid Id" };
+            actual.Should().BeEquivalentTo(expected);
+        }
+        [Fact]
+        public void UpdatedBook_with_negative_id_test()
+        {
+            int id = 101;
+            int newId = -200;
+            var updatedBook = new Book(newId, "Randomness", "Katoch", "Action", 0.99);
+            var response = bookService.UpdateBook(id, updatedBook);
+            var expected = response.getErrorList();
+            var actual = new List<string>() { "Id should not be negative" };
+            actual.Should().BeEquivalentTo(expected);
+        }
 
-        //}
-        //{
-        //    BookServices bookServices = new BookServices();
-        //    List<Book> bookList = new List<Book>() { new Book( 0, "The Monk Who sold his Ferrari", "Robin Sharma", "Fiction" ,200),
-        //                                             new Book( 1, "Revolution 2020", "Chetan Bhagat", "Fiction",600 ),
-        //                                             new Book( 2, "Twilight", "Myle", "action",70 )};
-
-        //    [Fact]
-        //    public void GetBook_should_return_list_of_books_test()
-        //    {
-        //        Add_books_in_list();
-        //        var actual = bookServices.GetBook();
-        //        var expected = bookList;
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void GetBook_should_return_empty_list_when_list_is_empty_test()
-        //    {
-        //        var actual = bookServices.GetBook();
-        //        var expected = new List<Book>();
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void GetBookById_should_return_book_with_specific_id_test()
-        //    {
-        //        var id = 2;
-        //        Add_books_in_list();
-        //        var actual = bookServices.GetBookById(id);
-        //        var expected = bookList;
-        //        Assert.Equal(expected.Find((book) => book.Id == id), actual);
-
-        //    }
-        //    [Fact]
-        //    public void GetBookById_with_negative_Id_test()
-        //    {
-        //        var id = -1;
-        //        Add_books_in_list();
-        //        var actual = bookServices.GetBookById(id);
-        //        Assert.Null(actual);
-        //    }
-        //    [Fact]
-        //    public void GetBookById_with_invalid_Id_test()
-        //    {
-        //        var id = 20;
-        //        Add_books_in_list();
-        //        var actual = bookServices.GetBookById(id);
-        //        Assert.Null(actual);
-        //    }
-        //    [Fact]
-        //    public void AddBook_should_add_book_in_bookData_test()
-        //    {
-        //        var expected = 1;
-        //        Add_books_in_list();
-        //        var newBook = new Book(3, "Random", "Katoch", "Action",0);
-        //        var actual =  bookServices.AddBook(newBook);
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void AddBook_with_negative_id_test()
-        //    {
-        //        var expected = -1;
-        //        Add_books_in_list();
-        //        var newBook = new Book(-1, "Random", "Katoch", "Action",0);
-        //        var actual = bookServices.AddBook(newBook);
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void AddBook_with_already_existing_id_test()
-        //    {
-        //        var expected = 0;
-        //        Add_books_in_list();
-        //        var newBook = new Book(1, "Random", "Katoch", "Action",0);
-        //        var actual = bookServices.AddBook(newBook);
-        //        Assert.Equal(expected, actual);
-        //    }
-
-        //    [Fact]
-        //    public void UpdatedBook_should_update_book_in_bookData_test()
-        //    {
-        //        int id = 2;
-        //        Add_books_in_list();
-        //        var updatedBook = new Book(id, "Randomness", "Katoch", "Action",0);
-        //        var actual = bookServices.UpdateBook(id, updatedBook);
-        //        var expected = 1;
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void UpdatedBook_with_invalid_id_test()
-        //    {
-        //        int id = 20;
-        //        Add_books_in_list();
-        //        var updatedBook = new Book(2, "Randomness", "Katoch", "Action", 0.99);
-        //        var actual = bookServices.UpdateBook(id, updatedBook);
-        //        var expected = 0;
-        //        Assert.Equal(expected, actual);
-        //    }
-        //    [Fact]
-        //    public void UpdatedBook_with_negative_id_test()
-        //    {
-        //        int id = -10;
-        //        Add_books_in_list();
-        //        var updatedBook = new Book(2, "Randomness", "Katoch", "Action", 0.88);
-        //        var actual = bookServices.UpdateBook(id, updatedBook);
-        //        var expected = -1;
-        //        Assert.Equal(expected, actual);
-        //    }
+     
     }
 }

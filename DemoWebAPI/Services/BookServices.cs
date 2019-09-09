@@ -51,16 +51,16 @@ namespace DemoWebAPI.Services
                 response.AddErrors(ValidateId(book.Id) );
 
             if (isInputStringValid(book.Title) == false)
-                response.AddErrors("Title is Invalid " + book.Title);
+                response.AddErrors("Title is Invalid ");
 
             if (isInputStringValid(book.Author) == false)
-                response.AddErrors("Author name is Invalid " + book.Author);
+                response.AddErrors("Author name is Invalid ");
 
             if (isInputStringValid(book.Category) == false)
-                response.AddErrors("Category is Invalid " + book.Category);
+                response.AddErrors("Category is Invalid ");
 
             if (isPriceValid(book.Price) == false)
-                response.AddErrors("Price should be greater than 0 " + book.Price);
+                response.AddErrors("Price should not be negative ");
 
             if (response.getErrorList().Count > 0)
                 return true;
