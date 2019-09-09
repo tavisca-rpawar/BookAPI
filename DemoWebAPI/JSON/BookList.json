@@ -1,0 +1,18 @@
+{
+  "BookList": [
+    {
+      "Id": 101,
+      "Title": "the monk who sold his ferrari",
+      "Author": "Robin Sharma",
+      "Category": "Non Fiction",
+      "Price": 200.0
+    },
+    {
+      "Id": 201,
+      "Title": "the cllimex",
+      "Author": "Alex",
+      "Category": "Fiction",
+      "Price": 500.0
+    }
+  ]
+}

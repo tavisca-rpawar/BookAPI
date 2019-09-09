@@ -20,7 +20,7 @@ namespace DemoWebAPI.Controllers
         public ActionResult<IEnumerable<Book>> Get()
         {
             List<Book> bookList = bookService.GetBook();
-            if(bookList == null)
+            if (bookList == null)
             {
                 return NoContent();
             }
@@ -30,48 +30,40 @@ namespace DemoWebAPI.Controllers
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<IEnumerable<Book>> Get(int id)
         {
-            Book book = bookService.GetBookById(id);
-            if (book == null)
-                return NoContent();
-            return Ok(book);
+            var response = bookService.GetBookById(id);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok(response.book);
         }
 
         // POST: api/Home
         [HttpPost]
-        public ActionResult<string> Post([FromBody] Book book)
+        public ActionResult<IEnumerable<string>> Post([FromBody] Book book)
         {
-            var status = bookService.AddBook(book);
-            if (status == -1)
-                return BadRequest("Negative Id cannot be accepted");
-            if (status == 0)
-                return BadRequest("Id Already exists");
-
-            return "Sucessfully Added in BookData having ID:" + book.Id;
-            
+            var response = bookService.AddBook(book);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Added Successfully having ID : " + response.book.Id);
         }
 
         // PUT: api/Home/5
         [HttpPut("{id}")]
-        public ActionResult<string> Put(int id, [FromBody] Book newBook)
+        public ActionResult<IEnumerable<string>> Put(int id, [FromBody] Book newBook)
         {
-            var status = bookService.UpdateBook(id, newBook);
-            if(status == -1)
-                return BadRequest("Negative Id cannot be accepted");
-            if (status == 0)
-                return BadRequest("Id Doesnot exist");
-            return "Sucessfully Udated having ID:" + newBook.Id;
+            var response = bookService.UpdateBook(id, newBook);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Updated Successfully having ID : " + response.book.Id);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public ActionResult<string> Delete(int id)
+        public ActionResult<IEnumerable<string>> Delete(int id)
         {
-            var status = bookService.DeleteBookByID(id);
-            if (status == -1)
-                return BadRequest("Negative Id is not available");
-            if (status == 0)
-                return BadRequest("Id Doesnot exist");
-            return "Sucessfully Deleted having ID:" + id;
+            var response = bookService.DeleteBookByID(id);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Deleted Successfully having ID : " +id);
         }
     }
 }
