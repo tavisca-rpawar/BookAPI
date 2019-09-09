@@ -10,12 +10,12 @@ namespace XUnitTest
 {
     public class BookServicesFixture
     {
-        BookServices bookService = new BookServices();
+        private BookServices bookService = new BookServices();
         [Fact]
         public void GetBookById_should_return_book_with_specific_id_test()
         {
             var id = 201;
-            var actual = bookService.GetBookById(id);
+            var actual = bookService.GetBookById(id).book;
             var expected = bookService.GetBook().Find((book) => book.Id == id);
             actual.Should().BeEquivalentTo(expected);
         }
@@ -66,7 +66,7 @@ namespace XUnitTest
             int newId = 100;
             var updatedBook = new Book(newId, "Randomness", "Katoch", "Action", 0);
             bookService.UpdateBook(id, updatedBook);
-            var expected = bookService.GetBookById(newId);
+            var expected = bookService.GetBookById(newId).book;
             var actual = updatedBook;
             actual.Should().BeEquivalentTo(expected);
         }
