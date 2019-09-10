@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DemoWebAPI.Model
 {
-
     public class Book
     {
         public Book(int Id, string Title, string Author, string Category, double Price)
