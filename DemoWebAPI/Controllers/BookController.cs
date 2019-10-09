@@ -20,7 +20,7 @@ namespace DemoWebAPI.Controllers
         public ActionResult<IEnumerable<Book>> Get()
         {
             List<Book> bookList = bookService.GetBook();
-            if(bookList == null)
+            if (bookList == null)
             {
                 return NoContent();
             }
@@ -28,30 +28,42 @@ namespace DemoWebAPI.Controllers
         }
         // GET: api/Home/5
         [HttpGet("{id}", Name = "Get")]
-        public Book Get(int id)
+        public ActionResult<IEnumerable<Book>> Get(int id)
         {
-            return bookService.GetBookById(id);
+            var response = bookService.GetBookById(id);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok(response.book);
         }
 
         // POST: api/Home
         [HttpPost]
-        public void Post([FromBody] Book value)
+        public ActionResult<IEnumerable<string>> Post([FromBody] Book book)
         {
-            bookService.AddBook(value);
+            var response = bookService.AddBook(book);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Added Successfully having ID : " + response.book.Id);
         }
 
         // PUT: api/Home/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Book newBook)
+        public ActionResult<IEnumerable<string>> Put(int id, [FromBody] Book newBook)
         {
-            bookService.UpdateBook(id, newBook);
+            var response = bookService.UpdateBook(id, newBook);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Updated Successfully having ID : " + response.book.Id);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<IEnumerable<string>> Delete(int id)
         {
-            bookService.DeleteBookByID(id);
+            var response = bookService.DeleteBookByID(id);
+            if (response.getErrorList().Count > 0)
+                return BadRequest(response.getErrorList());
+            return Ok("Books Deleted Successfully having ID : " +id);
         }
     }
 }

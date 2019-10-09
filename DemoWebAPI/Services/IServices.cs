@@ -9,9 +9,9 @@ namespace DemoWebAPI.Services
     public interface IServices
     {
         List<Book> GetBook();
-        Book GetBookById(int id);
-        void AddBook(Book newBook);
-        void UpdateBook(int id, Book newBook);
-        void DeleteBookByID(int id);
+        Response GetBookById(int id);
+        Response AddBook(Book newBook);
+        Response UpdateBook(int id, Book newBook);
+        Response DeleteBookByID(int id);
     }
 }
